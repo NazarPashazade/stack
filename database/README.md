@@ -15,7 +15,7 @@
 
     environment:
       - PGADMIN_DEFAULT_EMAIL=pgadminuser@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=Password123!
+      - PGADMIN_DEFAULT_PASSWORD=Database123!
 
 
 
@@ -29,7 +29,7 @@
 
      1. Username: "postgres"
 
-     1. Password: "Password123!"
+     1. Password: "Database123!"
 
 
 

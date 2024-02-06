@@ -6,7 +6,7 @@ services:
     container_name: postgres
     restart: unless-stopped
     environment:
-      - POSTGRES_PASSWORD=Password123!
+      - POSTGRES_PASSWORD=Database123!
     volumes:
       - ./../../postgres-data:/var/lib/postgresql/data
     ports:
@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
     environment:
       - PGADMIN_DEFAULT_EMAIL=pgadminuser@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=Password123!
+      - PGADMIN_DEFAULT_PASSWORD=Database123!
     ports:
       - "8080:80"
     depends_on:
