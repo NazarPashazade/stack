@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: postgres
+    restart: unless-stopped
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=Maykradexla2019
+
+networks:
+  reverse-proxy:
+    external: true
+
+volumes:
+  data:

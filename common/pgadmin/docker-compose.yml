@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: unless-stopped
+    volumes:
+      - data:/var/lib/pgadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dba@mediusoft.com
+      - PGADMIN_DEFAULT_PASSWORD=Maykradexla2019
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pgadmin.rule=Host(`pgadmin.mediusoft.com`)
+      - traefik.http.routers.pgadmin.entrypoints=websecure
+      - traefik.http.routers.pgadmin.tls.certresolver=leresolver
+
+networks:
+  reverse-proxy:
+    external: true
+
+volumes:
+  data:
