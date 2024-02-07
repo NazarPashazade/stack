@@ -32,7 +32,3 @@
      1. Username: "postgres"
 
      1. Password: "Database123!"
-
-
-
-// For more info: https://www.youtube.com/watch?v=bu6IURMFZwQ
