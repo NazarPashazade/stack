@@ -1,19 +1,21 @@
 # 1. Install Docker Desktop 
 
-# 2. Run this command                 //inside the database folder
+# 2. Clone Project 
+
+# 3. Run this command                 //inside the database folder
 
      docker-compose up -d 
 
 
 
-# 3. Go to LINK:  (http://localhost:8080/)
+# 4. Go to LINK:  (http://localhost:8080/)
 
     ports:
       - "8080:80"
 
 
 
-# 4. PgAdmin Credentials: 
+# 5. PgAdmin Credentials: 
 
     environment:
       - PGADMIN_DEFAULT_EMAIL=pgadminuser@gmail.com
@@ -21,7 +23,7 @@
 
 
 
-# 5. Register Server
+# 6. Register Server
 
      1. HOSTNAME: "postgres-db"            //same as Service name
             services:
