@@ -1,4 +1,4 @@
-# 1. Install Docker Desktop 
+### 1. Install Docker Desktop 
 
 ## 2. Clone Project 
 
