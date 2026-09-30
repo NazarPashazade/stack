@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -17,6 +15,8 @@ services:
       - traefik.http.routers.pgadmin.rule=Host(`pgadmin.mediusoft.com`)
       - traefik.http.routers.pgadmin.entrypoints=websecure
       - traefik.http.routers.pgadmin.tls.certresolver=leresolver
+    networks:
+      - reverse-proxy
 
 networks:
   reverse-proxy:

@@ -1,36 +1,43 @@
-### 1. Install Docker Desktop 
+# Database
 
-### 2. Clone Project 
+PostgreSQL and pgAdmin running together for local development.
 
-### 3. Run this command                 //inside the database folder
+## Prerequisites
 
-     docker-compose up -d 
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
+## Setup
 
+1. Clone the project.
 
-### 4. Go to LINK:  (http://localhost:8080/)
+2. From inside the `database` folder, start the containers:
 
-    ports:
-      - "8080:80"
+   ```sh
+   docker-compose up -d
+   ```
 
+3. Open pgAdmin at <http://localhost:8080> and log in:
 
+   | Field | Value |
+   | --- | --- |
+   | Email | `pgadminuser@gmail.com` |
+   | Password | `Database123!` |
 
-### 5. PgAdmin Credentials: 
+4. Register the server in pgAdmin (**Object → Register → Server**, *Connection* tab):
 
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=pgadminuser@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=Database123!
+   | Field | Value |
+   | --- | --- |
+   | Host name | `postgres-db` (the service name in `docker-compose.yml`) |
+   | Port | `5432` |
+   | Username | `postgres` |
+   | Password | `Database123!` |
 
+## Data
 
+Database files are stored in `../../postgres-data` on the host (the `postgres-data` folder next to `stack`), so they persist across container restarts.
 
-### 6. Register Server
+## Stop
 
-     1. HOSTNAME: "postgres-db"            //same as Service name
-            services:
-                postgres-db:
-
-     1. PORT: "5432"
-
-     1. Username: "postgres"
-
-     1. Password: "Database123!"
+```sh
+docker-compose down
+```
