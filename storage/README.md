@@ -16,7 +16,7 @@
    docker-compose up -d
    ```
 
-   The `create-bucket` container creates the `edu` bucket, makes `edu/avatars/*` publicly readable, and exits.
+   The `create-bucket` container creates the `edu` bucket, makes `edu/avatars/*` and `edu/articles/*` publicly readable, and exits.
 
 3. Open the RustFS console at <http://localhost:9001/rustfs/console/> and log in:
 
