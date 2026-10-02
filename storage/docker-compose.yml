@@ -1,0 +1,36 @@
+services:
+  rustfs:
+    image: rustfs/rustfs:1.0.0
+    container_name: rustfs
+    restart: unless-stopped
+    environment:
+      - RUSTFS_VOLUMES=/data
+      - RUSTFS_ADDRESS=0.0.0.0:9000
+      - RUSTFS_CONSOLE_ADDRESS=0.0.0.0:9001
+      - RUSTFS_CONSOLE_ENABLE=true
+      - RUSTFS_ACCESS_KEY=rustfsadmin
+      - RUSTFS_SECRET_KEY=Storage123!
+    volumes:
+      - ./../../storage-data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+  # Creates the "edu" bucket and makes avatars publicly readable, then exits. Safe to run on every start.
+  create-bucket:
+    image: amazon/aws-cli:latest
+    container_name: rustfs-create-bucket
+    environment:
+      - AWS_ACCESS_KEY_ID=rustfsadmin
+      - AWS_SECRET_ACCESS_KEY=Storage123!
+      - AWS_DEFAULT_REGION=us-east-1
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        s3="aws --endpoint-url http://rustfs:9000 s3api"
+        until $$s3 list-buckets > /dev/null 2>&1; do sleep 1; done
+        $$s3 head-bucket --bucket edu 2> /dev/null || $$s3 create-bucket --bucket edu
+        $$s3 put-bucket-policy --bucket edu --policy '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"AWS":["*"]},"Action":["s3:GetObject"],"Resource":["arn:aws:s3:::edu/avatars/*"]}]}'
+        echo "Bucket edu is ready"
+    depends_on:
+      - rustfs
